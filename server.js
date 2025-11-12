@@ -83,18 +83,21 @@
      </head>
      <body>
        <script>
-         (function () {
+        (function () {
           function sendMessage(msg) {
-            if (window.opener) {
-              window.opener.postMessage(
+            var target = window.opener || window.parent;
+            if (target) {
+              target.postMessage(
                 "authorization:github:" + JSON.stringify(msg),
                 "*"
               );
             }
           }
-           sendMessage(${JSON.stringify(message)});
-           window.close();
-         })();
+          sendMessage(${JSON.stringify(message)});
+          setTimeout(function () {
+            window.close();
+          }, 10);
+        })();
        </script>
      </body>
    </html>`);
