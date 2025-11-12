@@ -84,14 +84,14 @@
      <body>
        <script>
          (function () {
-           function sendMessage(msg) {
-             if (window.opener) {
-               window.opener.postMessage(
-                 "authorization:github:" + JSON.stringify(msg),
-                 window.location.origin
-               );
-             }
-           }
+          function sendMessage(msg) {
+            if (window.opener) {
+              window.opener.postMessage(
+                "authorization:github:" + JSON.stringify(msg),
+                "*"
+              );
+            }
+          }
            sendMessage(${JSON.stringify(message)});
            window.close();
          })();
